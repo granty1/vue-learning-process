@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './router'
 import { setTitle } from '../lib/util'
+import store from '@/store'
 
 Vue.use(Router)
 
@@ -10,7 +11,7 @@ const router = new Router({
   routes
 })
 
-var HAS_LOGINED = true
+// var HAS_LOGINED = true
 
 // 注册全局前置守卫
 router.beforeEach((to, from, next) => {
@@ -21,10 +22,10 @@ router.beforeEach((to, from, next) => {
   to.meta && setTitle(to.meta.title)
   // 判断用户登录状态
   if (to.name !== 'login') {
-    if (HAS_LOGINED) next()
+    if (store.state.IS_LOGIN) next()
     else next({ name: 'login' })
   } else {
-    if (HAS_LOGINED) next({ name: 'home' })
+    if (store.state.IS_LOGIN) next({ name: 'home' })
     else next()
   }
 })

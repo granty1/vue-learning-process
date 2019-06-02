@@ -1,5 +1,7 @@
 const state = {
   //
+  currentUserName: 'Grant',
+  IS_LOGINED: false
 }
 const mutations = {
 

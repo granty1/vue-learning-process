@@ -10,6 +10,7 @@
 export default {
   methods:{
     login (){
+      this.$store.IS_LOGIN = true
       console.log('user login ...')
     }
   }

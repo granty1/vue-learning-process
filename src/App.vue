@@ -4,14 +4,37 @@
       <router-link :to="{path: '/'}">Home</router-link> |
       <router-link :to="{name: 'about'}">About</router-link> | 
       <router-link :to="{ name: 'store' }">Store</router-link>
+      <a  href="#" v-text="currentUserName"></a>
     </div>
     <transition-group name="router">
       <router-view key="default"/>
       <router-view key="email" name="email"/>
       <router-view key="tel" name="tel"/>
     </transition-group>
+    <p v-text="appName"></p>
   </div>
 </template>
+
+<script>
+
+import { mapState } from 'vuex'
+
+export default {
+  computed: {
+    // appName (){
+    //   return this.$store.state.appName
+    // },
+    // currentUserName () {
+    //   return this.$store.state.user.currentUserName
+    // }
+    ...mapState({
+      appName: state => state.appName,
+      currentUserName: state => state.user.currentUserName
+    })
+  }
+}
+</script>
+
 
 <style lang="less">
 #app {
