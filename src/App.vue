@@ -2,7 +2,8 @@
   <div id="app">
     <div id="nav">
       <router-link :to="{path: '/'}">Home</router-link> |
-      <router-link :to="{name: 'about'}">About</router-link>
+      <router-link :to="{name: 'about'}">About</router-link> | 
+      <router-link :to="{ name: 'store' }">Store</router-link>
     </div>
     <transition-group name="router">
       <router-view key="default"/>
