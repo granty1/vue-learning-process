@@ -1,6 +1,6 @@
 const path = require('path')
 
-const resolve = dir => path.join(__dirname, 'dir')
+const resolve = dir => path.join(__dirname, dir)
 //                                            实际生产环境 / 开发环境
 const BASE_URL = process.env.NODE_ENV === 'production' ? '/grant-admin' : '/'
 
