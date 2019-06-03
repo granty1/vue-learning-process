@@ -3,7 +3,7 @@
     <div id="nav">
       <router-link :to="{path: '/'}">Home</router-link> |
       <router-link :to="{name: 'about'}">About</router-link> | 
-      <router-link :to="{ name: 'store' }">Store</router-link>
+      <router-link :to="{ name: 'store' }">Store</router-link>|
       <a  href="#" v-text="currentUserName"></a>
     </div>
     <transition-group name="router">
@@ -12,13 +12,13 @@
       <router-view key="tel" name="tel"/>
     </transition-group>
     <p v-text="appName"></p>
+    <p v-text="appNameWithVersion"></p>
   </div>
 </template>
 
 <script>
 
-import { mapState } from 'vuex'
-
+import { mapState, mapGetters } from 'vuex'
 export default {
   computed: {
     // appName (){
@@ -29,8 +29,11 @@ export default {
     // }
     ...mapState({
       appName: state => state.appName,
-      currentUserName: state => state.user.currentUserName
-    })
+      currentUserName : state => state.user.currentUserName
+    }),
+    appNameWithVersion () {
+      return this.$store.getters.appNameWithVersion
+    }
   }
 }
 </script>

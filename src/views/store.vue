@@ -1,8 +1,9 @@
 <template>
   <div>
     <gr-input v-model="inputValue"/>
-    <p>{{inputValue}}</p>
+    <p>{{ inputValue}}</p>
     <gr-show :content="contentValue"/>
+    <p>last char is : {{ inputValueLast }}</p>
   </div>
 </template>
 
@@ -23,6 +24,9 @@ export default {
   computed: {
     contentValue: function(){
       return this.inputValue
+    },
+    inputValueLast () {
+      return this.inputValue.substr(-1,1)
     }
   }
 }
