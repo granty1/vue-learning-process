@@ -22,10 +22,10 @@ router.beforeEach((to, from, next) => {
   to.meta && setTitle(to.meta.title)
   // 判断用户登录状态
   if (to.name !== 'login') {
-    if (store.state.IS_LOGIN) next()
+    if (store.state.user.IS_LOGINED) next()
     else next({ name: 'login' })
   } else {
-    if (store.state.IS_LOGIN) next({ name: 'home' })
+    if (store.state.user.IS_LOGINED) next({ name: 'home' })
     else next()
   }
 })

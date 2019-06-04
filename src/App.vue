@@ -13,6 +13,8 @@
     </transition-group>
     <p v-text="appName"></p>
     <p v-text="appNameWithVersion"></p>
+    <p v-text="appVersion"></p>
+    <button @click="changeAppName">do change</button>
   </div>
 </template>
 
@@ -29,10 +31,17 @@ export default {
     // }
     ...mapState({
       appName: state => state.appName,
-      currentUserName : state => state.user.currentUserName
+      currentUserName : state => state.user.currentUserName,
+      appVersion : state => state.appVersion
     }),
     appNameWithVersion () {
       return this.$store.getters.appNameWithVersion
+    }
+  },
+  methods: {
+    changeAppName () {
+      this.$store.commit('SET_APP_NAME','Guolin'),
+      this.$store.commit('ADD_VERSION')
     }
   }
 }
