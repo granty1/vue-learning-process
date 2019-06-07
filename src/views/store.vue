@@ -7,6 +7,7 @@
     <gr-show :content="contentValue"/>
     <p>last char is : {{ inputValueLast }}</p>
     <button @click="hadleChangeAppName">Change</button>
+    <button @click="handleGetData">获取服务端数据</button>
   </div>
 </template>
 
@@ -14,6 +15,7 @@
 import GrInput from '_c/GrInput.vue'
 import GrShow from '_c/GrShow.vue'
 import { mapActions, mapState, mapMutations } from 'vuex'
+import { getUserInfo } from '@/api/user'
 export default {
   name: 'store',
   components:{
@@ -58,6 +60,11 @@ export default {
     },
     changeStateValue (val) {
       this.updateStateValue(val)
+    },
+    handleGetData () {
+      getUserInfo().then(res => {
+        console.log(res)
+      })
     }
   }
 }
