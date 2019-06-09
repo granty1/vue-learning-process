@@ -4,6 +4,7 @@
       <router-link :to="{path: '/'}">Home</router-link> |
       <router-link :to="{name: 'about'}">About</router-link> | 
       <router-link :to="{ name: 'store' }">Store</router-link>|
+      <router-link :to="{ name: 'count-to' }">Count</router-link>|
       <a  href="#" v-text="currentUserName"></a>
     </div>
     <transition-group name="router">
