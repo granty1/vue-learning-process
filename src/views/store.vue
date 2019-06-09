@@ -7,7 +7,8 @@
     <gr-show :content="contentValue"/>
     <p>last char is : {{ inputValueLast }}</p>
     <button @click="hadleChangeAppName">Change</button>
-    <button @click="handleGetData">获取服务端数据</button>
+    <button @click="handleGetData" :style="{background: bgColor}">获取服务端数据</button>
+    <img :src="img">
   </div>
 </template>
 
@@ -24,7 +25,9 @@ export default {
   },
   data (){
     return {
-      inputValue:''
+      inputValue:'',
+      img: '',
+      bgColor: ''
     }
   },
   computed: {
@@ -64,6 +67,8 @@ export default {
     handleGetData () {
       getUserInfo().then(res => {
         console.log(res)
+        this.img = res.data.data[0].img
+        this.bgColor = res.data.data[0].color
       })
     }
   }

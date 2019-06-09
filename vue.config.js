@@ -16,6 +16,6 @@ module.exports = {
   productionSourceMap: false,
   // 跨域配置
   devServer: {
-    // proxy: 'http://localhost:8001'
+    proxy: 'http://localhost:8001'
   }
 }

@@ -1,7 +1,7 @@
 const state = {
   //
   currentUserName: '',
-  IS_LOGINED: false
+  IS_LOGINED: true
 }
 const mutations = {
   USER_LOGIN (state, params) {

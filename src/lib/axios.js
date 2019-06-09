@@ -49,6 +49,7 @@ class HttpRequest {
     instance.interceptors.response.use(res => {
       // 关闭 loading 遮罩层
       // 处理res
+      return res
     }, error => {
       return Promise.reject(error)
     })
