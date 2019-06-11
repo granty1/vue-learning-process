@@ -14,8 +14,8 @@ export default {
   name: 'count_to',
   data () {
     return {
-      endNum:200
-    }
+      endNum:2000
+    } 
   },
   components: {
     CountTo
@@ -25,7 +25,7 @@ export default {
       this.$refs.num.getNumber()
     },
     addNum () {
-      this.endNum += 100
+      this.endNum += 1000000
     },
     handelEndValue (endVal) {
       console.log(endVal)
