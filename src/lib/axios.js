@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { baseURL } from '@/config'
+import { getToken } from '@/lib/util'
 class HttpRequest {
   /**
    * 构造器
@@ -40,16 +41,17 @@ class HttpRequest {
     // 请求拦截器
     instance.interceptors.request.use(config => {
       // 添加全局 loading 遮罩层
+      config.headers['Authorization'] = getToken()
       return config
       // return 之后 请求继续
     }, error => {
       return Promise.reject(error)
     })
     // 响应拦截器
-    instance.interceptors.response.use(res => {
+    instance.interceptors.response.use(({data}) => {
       // 关闭 loading 遮罩层
       // 处理res
-      return res
+      return data
     }, error => {
       return Promise.reject(error)
     })

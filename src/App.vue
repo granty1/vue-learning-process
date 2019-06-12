@@ -7,6 +7,7 @@
       <router-link :to="{ name: 'count-to' }">Count</router-link>|
       <router-link :to="{ name: 'split-pane' }">Split-Pane</router-link>|
       <router-link :to="{ name: 'menu-page' }">Menu</router-link>|
+      <button @click="handleLogout"> Logout</button>
       <a  href="#" v-text="currentUserName"></a>
     </div>
     <transition-group name="router">
@@ -23,7 +24,8 @@
 
 <script>
 
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
+import { setToken } from '@/lib/util'
 export default {
   computed: {
     // appName (){
@@ -42,9 +44,18 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'logoutAction'
+    ]),
     changeAppName () {
       this.$store.commit('SET_APP_NAME','Guolin'),
       this.$store.commit('ADD_VERSION')
+    },
+    handleLogout() {
+      this.logoutAction()
+      this.$router.push({
+        name : 'login'
+      })
     }
   }
 }

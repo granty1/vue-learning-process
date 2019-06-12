@@ -1,40 +1,50 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './router'
-import { setTitle } from '../lib/util'
+import { setTitle, getToken, setToken } from '../lib/util'
 import store from '@/store'
-import iView from 'iview'
 
 Vue.use(Router)
-Vue.use(iView)
 const router = new Router({
   // mode : 'hash' 有#
   routes
 })
 
-// var HAS_LOGINED = true
+var HAS_LOGINED = false
 
 // 注册全局前置守卫
 router.beforeEach((to, from, next) => {
   // to 跳转的页面的路由对象
   // from 当前页面的路由对象
   // 判断路有对象是否需要自定义标题
-  iView.LoadingBar.start()
   to.meta && setTitle(to.meta.title)
   // 判断用户登录状态
-  if (to.name !== 'login') {
-    if (store.state.user.IS_LOGINED) next()
-    else next({ name: 'login' })
-  } else {
-    if (store.state.user.IS_LOGINED) next({ name: 'home' })
-    else next()
+  // if (to.name !== 'login') {
+  //   if (HAS_LOGINED) next()
+  //   else next({ name: 'login' })
+  // } else {
+  //   if (HAS_LOGINED) next({ name: 'home' })
+  //   else next()
+  // }
+  const token = getToken()
+  if(token){
+    // 判断token是否有效
+    store.dispatch('authorizationAction', token).then(() => {
+      if(to.name === 'login') next({name: 'home'})
+      else next()
+    }).catch(error => {
+      setToken('')
+      next({name: 'login'})
+    })
+  }else{
+    if(to.name === 'login') next()
+    else next({name: 'login'})
   }
 })
 
 // 注册后置钩子
 router.afterEach((to, from) => {
   // loading style  = false
-  iView.LoadingBar.finish()
 })
 
 /**
