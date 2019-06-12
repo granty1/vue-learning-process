@@ -3,9 +3,10 @@ import Router from 'vue-router'
 import routes from './router'
 import { setTitle } from '../lib/util'
 import store from '@/store'
+import iView from 'iview'
 
 Vue.use(Router)
-
+Vue.use(iView)
 const router = new Router({
   // mode : 'hash' 有#
   routes
@@ -17,8 +18,8 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   // to 跳转的页面的路由对象
   // from 当前页面的路由对象
-
   // 判断路有对象是否需要自定义标题
+  iView.LoadingBar.start()
   to.meta && setTitle(to.meta.title)
   // 判断用户登录状态
   if (to.name !== 'login') {
@@ -33,7 +34,7 @@ router.beforeEach((to, from, next) => {
 // 注册后置钩子
 router.afterEach((to, from) => {
   // loading style  = false
-  console.log('load findished')
+  iView.LoadingBar.finish()
 })
 
 /**

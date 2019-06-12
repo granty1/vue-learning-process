@@ -2,9 +2,7 @@
     <div class="split-pane-on">
         <split-pane :value="0.5">
                 <split-pane slot="left"></split-pane>
-            <div slot="right">
-                <span>right</span>
-            </div>
+                <split-pane slot="right"></split-pane>
         </split-pane>
     </div>
 </template>
@@ -17,7 +15,7 @@ export default {
 }
 </script>
 <style lang="less">
-.split-pane-on{
+.split-pane-on{ 
     height: 300px;
     width: 600px;
     background: paleturquoise;

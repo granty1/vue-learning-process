@@ -6,6 +6,7 @@
       <router-link :to="{ name: 'store' }">Store</router-link>|
       <router-link :to="{ name: 'count-to' }">Count</router-link>|
       <router-link :to="{ name: 'split-pane' }">Split-Pane</router-link>|
+      <router-link :to="{ name: 'menu-page' }">Menu</router-link>|
       <a  href="#" v-text="currentUserName"></a>
     </div>
     <transition-group name="router">
@@ -55,7 +56,7 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  //text-align: center;
   color: #2c3e50;
 }
 #nav {

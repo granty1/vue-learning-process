@@ -65,6 +65,11 @@ export default [
     ]
   },
   {
+    path: '/menu-page',
+    name: 'menu-page',
+    component: () => import('../views/menu_page.vue')
+  },
+  {
     path: '/named_view',
     components: {
       default: () => import('../views/child.vue'),
