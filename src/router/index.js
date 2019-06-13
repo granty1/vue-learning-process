@@ -26,20 +26,22 @@ router.beforeEach((to, from, next) => {
   //   if (HAS_LOGINED) next({ name: 'home' })
   //   else next()
   // }
-  const token = getToken()
-  if(token){
-    // 判断token是否有效
-    store.dispatch('authorizationAction', token).then(() => {
-      if(to.name === 'login') next({name: 'home'})
-      else next()
-    }).catch(error => {
-      setToken('')
-      next({name: 'login'})
-    })
-  }else{
-    if(to.name === 'login') next()
-    else next({name: 'login'})
-  }
+  // const token = getToken()
+  // if(token){
+  //   // 判断token是否有效
+  //   store.dispatch('authorizationAction', token).then(() => {
+  //     if(to.name === 'login') next({name: 'home'})
+  //     else next()
+  //   }).catch(error => {
+  //     setToken('')
+  //     next({name: 'login'})
+  //   })
+  // }else{
+  //   if(to.name === 'login') next()
+  //   else next({name: 'login'})
+  // }
+
+  next()
 })
 
 // 注册后置钩子

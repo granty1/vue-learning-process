@@ -6,16 +6,22 @@ export default [
     name: 'home',
     // 别名配置
     alias: '/home_page',
-    component: Home,
-    props: route => ({
-      food: route.query.food
-    }),
-    // 属于 /home 的前置路由守卫
-    beforeEnter: (to, from, next) => {
-      // if (from.name === 'about') alert('come from about page')
-      // else alert('come from other page')
-      next()
-    }
+    component: () => import('../views/layout.vue'),
+    children: [
+      {
+        path: 'home',
+        component: Home
+      }
+    ]
+    // props: route => ({
+    //   food: route.query.food
+    // }),
+    // // 属于 /home 的前置路由守卫
+    // beforeEnter: (to, from, next) => {
+    //   // if (from.name === 'about') alert('come from about page')
+    //   // else alert('come from other page')
+    //   next()
+    // }
   },
   {
     path: '/login',

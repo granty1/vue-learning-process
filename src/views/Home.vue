@@ -1,11 +1,23 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/img/logo.png">
+    <!-- <img alt="Vue logo" src="../assets/img/logo.png">
     <h2>{{food}}</h2>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <button @click="handleClick('back')">返回上一页</button>
     <button @click="handleClick('push')">跳转parent</button>
-    <button @click="handleClick('replace')">替换到parent</button>
+    <button @click="handleClick('replace')">替换到parent</button> -->
+    <Row>
+      <Col></Col>
+    </Row>
+    <Row :gutter="10">
+      <Col span="12"></Col>
+      <Col span="12"></Col>
+    </Row>
+    <Row :gutter="10">
+      <Col span="8"></Col>
+      <Col span="8"></Col>
+      <Col span="8"></Col>
+    </Row>
   </div>
 </template>
 
@@ -72,3 +84,13 @@ export default {
   }
 }
 </script>
+<style lang="less">
+.home{
+  .ivu-col{
+    height: 50px;
+    background: pink;
+    margin-top: 10px;
+    background-clip: content-box;
+  }
+}
+</style>
