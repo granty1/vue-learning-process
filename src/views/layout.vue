@@ -1,7 +1,9 @@
 <template>
     <div class="layout-wrapper">
         <Layout class="layout-outer">
-            <Sider collapsible hide-trigger v-model="collapsed" breakpoint="md"></Sider>
+            <Sider collapsible hide-trigger v-model="collapsed" breakpoint="md">
+                <side-menu :collapsed="collapsed" :list="menuList"></side-menu>
+            </Sider>
             <Layout>
                 <Header class="layout-header-bar" >
                     <Icon :class="triggerClasses" type="md-menu" :size="32" @click.native="handleCollapsed"></Icon>
@@ -16,11 +18,49 @@
     </div>
 </template>
 <script>
+import SideMenu from '@/components/side-menu'
 export default {
     data () {
         return {
-            collapsed: false
+            collapsed: false,
+            menuList: [
+                {
+                    title: '文章管理',
+                    icon: 'ios-analytics'
+                },
+                {
+                    title: '用户管理',
+                    icon: 'ios-archive'
+                },
+                {
+                    title: '权限管理',
+                    icon: 'logo-apple',
+                    children: [
+                        {
+                            title: '用户权限',
+                            icon: 'ios-aperture'
+                        },
+                        {
+                            title: '管理员权限',
+                            icon: 'ios-cafe-outline',
+                            children: [
+                                {
+                                    title: '前台',
+                                    icon:'logo-chrome'
+                                },
+                                {
+                                    title: '后台',
+                                    icon:'md-cloudy-night'
+                                }
+                            ]
+                        }
+                    ]
+                },
+            ]
         }
+    },
+    components: {
+        SideMenu
     },
     methods:{
         handleCollapsed (){
