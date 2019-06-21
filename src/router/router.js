@@ -11,6 +11,10 @@ export default [
       {
         path: 'home',
         component: Home
+      },
+      {
+        path: 'table',
+        component: () => import('../views/table.vue')
       }
     ]
     // props: route => ({
@@ -27,6 +31,11 @@ export default [
     path: '/login',
     name: 'login',
     component: () => import('../views/login.vue')
+  },
+  {
+    path: '/table',
+    name: 'table',
+    component: () => import('../views/table.vue')
   },
   {
     path: '/about',

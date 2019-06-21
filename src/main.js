@@ -6,7 +6,7 @@ import Bus from './lib/bus'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css';
 // if (process.env.NODE_ENV !== 'production') require('./mock')
-// import './mock/index'
+import './mock/index'
 Vue.config.productionTip = false
 // 注入 bus
 Vue.prototype.$bus = Bus

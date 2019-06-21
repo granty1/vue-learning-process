@@ -67,8 +67,8 @@ export default {
     handleGetData () {
       getUserInfo().then(res => {
         console.log(res)
-        this.img = res.data.data[0].img
-        this.bgColor = res.data.data[0].color
+        this.img = res.data[0].img
+        this.bgColor = res.data[0].color
       })
     }
   }

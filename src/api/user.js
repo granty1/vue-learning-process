@@ -7,7 +7,7 @@ export const getUserInfo = () => {
   })
 }
 
-export const loginApi =  (entity) => {
+export const loginApi = (entity) => {
   return axios.request({
     url: '/login',
     method: 'post',
