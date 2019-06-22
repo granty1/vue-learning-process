@@ -15,7 +15,7 @@ export const getTableData = () => {
 
 export const getFileList = () => {
   const template = {
-    'data|25': [
+    'data|35': [
       {
         'name|5':'@cword',
         'creat_time':'@datetime',

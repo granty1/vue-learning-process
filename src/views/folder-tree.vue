@@ -1,13 +1,17 @@
 <template>
   <div class="folder-wrapper">
-    <Tree :data="folderTree" :render="renderFunc"></Tree>
+    <FolderTree
+      :folder-list.sync="folderList"
+      :file-list.sync="fileList"
+      :folder-drop-list="folderDropList"
+      :file-drop-list="fileDropList"
+      :before-delete="beforeDelete"></FolderTree>
   </div>
 </template>
 
 <script>
   import { getFilelist, getFolderList } from '../api/data'
-  import { putFileInFolder, transferFolderToTree } from '../lib/util'
-
+  import FolderTree from '@/components/folder-tree'
   export default {
     name: 'folder-tree',
     data () {
@@ -15,32 +19,61 @@
         fileList: [],
         folderList: [],
         folderTree: [],
-        renderFunc: (h, { root, node, data }) => {
-          console.log(data)
-          return (
-            <div class="tree-item">
-              {data.type ? <icon type="ios-folder" color="#5cadff" style="margin-right:5px"/> : ''}
-              { data.title }
-            </div>
-          )
-        }
+        folderDropList: [
+          {
+            name: 'rename',
+            title: '重命名'
+          },
+          {
+            name: 'del',
+            title: '删除文件夹'
+          },
+          {
+            name: 'add',
+            title: '添加子节点'
+          }
+        ],
+        fileDropList: [
+          {
+            name: 'rename',
+            title: '重命名'
+          },
+          {
+            name: 'del',
+            title: '删除文件'
+          },
+          {
+            name: 'add',
+            title: '添加节点'
+          }
+        ]
       }
+    },
+    components: {
+      FolderTree
     },
     mounted () {
       Promise.all([getFolderList(), getFilelist()]).then(res => {
-        this.folderTree = transferFolderToTree(putFileInFolder(res[0].data, res[1].data))
+        this.folderList = res[0].data
+        this.fileList = res[1].data
       })
+    },
+    methods: {
+      beforeDelete() {
+        return new Promise((resolve,reject) => {
+          let error = null
+          if (!error) {
+            resolve()
+          } else reject(error)
+        })
+      }
     }
   }
 </script>
 
 <style lang="less">
   .folder-wrapper {
-    width: fit-content;
-    height: 300px;
-    .tree-item{
-      display: inline-block;
-      line-height: 30px;
-    }
+    width: 300px;
+
   }
 </style>
