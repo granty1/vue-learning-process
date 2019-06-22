@@ -97,6 +97,6 @@ export default {
     padding: 10px;
 }
 .page-card{
-    min-height: 100%;
+    height: 100%
 }
 </style>

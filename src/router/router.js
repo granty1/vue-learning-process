@@ -15,6 +15,10 @@ export default [
       {
         path: 'table',
         component: () => import('../views/table.vue')
+      },
+      {
+        path: 'tree',
+        component: () => import('../views/folder-tree.vue')
       }
     ]
     // props: route => ({
